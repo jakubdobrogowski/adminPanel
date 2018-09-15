@@ -1,7 +1,9 @@
 package pl.sda.java9.servlets;
 
+import pl.sda.java9.database.daos.ServerDAO;
 import pl.sda.java9.database.daos.UserDAO;
 import pl.sda.java9.model.User;
+import pl.sda.java9.utils.CommonUtils;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -47,12 +49,16 @@ public class LoginServlet extends HttpServlet {
             return;
         }
 
+        request.setAttribute("allUsers", CommonUtils.createUserMap(UserDAO.getAllUsers()));
+        request.setAttribute("allServers", ServerDAO.getAllServers());
+
         session.setAttribute("user", userByLogin.getLogin());
         session.setAttribute("id", userByLogin.getId().toString());
         session.setAttribute("isAdmin", userByLogin.getIsAdmin().toString());
         session.setMaxInactiveInterval(15 * 60);
-        response.sendRedirect("/serverList.jsp");
 
+        RequestDispatcher rs = request.getRequestDispatcher("/serverList.jsp");
+        rs.forward(request, response);
     }
 
 }

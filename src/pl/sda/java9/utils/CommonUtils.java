@@ -4,14 +4,13 @@ import pl.sda.java9.model.User;
 
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class CommonUtils {
 
 
-    public static Map<Integer, User> createUserMap(List<User> userList) {
+    public static HashMap<Integer, User> createUserMap(List<User> userList) {
 
-        Map<Integer, User> userMap = new HashMap<>();
+        HashMap<Integer, User> userMap = new HashMap<>();
 
         for (User user : userList) {
 

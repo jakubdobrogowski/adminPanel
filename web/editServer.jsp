@@ -41,14 +41,14 @@
     Boolean adminProp = admin.equals("1");
 %>
 
-<form action="/editServer" method="post">
+<form action="/saveServer" method="post">
 
     <input type="hidden" name="id">
     Name: <input type="text" name="name" placeholder="name">
     <br>
     Host: <input type="text" name="host" placeholder="host">
     <br>
-    Port: <input type="text" name="user" placeholder="port">
+    Port: <input type="text" name="port" placeholder="port">
     <br>
     Status: <input type="text" name="status" placeholder="status">
     <br>

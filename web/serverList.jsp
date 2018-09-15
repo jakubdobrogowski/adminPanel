@@ -30,22 +30,29 @@
 
 <%
     ladeID.addAll(allServers);
-    ladaMapa = allUsers;
+    ladaMapa.putAll(allUsers); // tu zmiana
     loggedInUser = (String) session.getAttribute("user");
     isAdmin = (String) session.getAttribute("isAdmin");
 %>
 
 <c:forEach var="server" items="${ladeID}">
 
-    <h1>Server Name: ${server.name}</h1>
-    <h1>Server Host: ${server.host}</h1>
-    <h1>Server Port: ${server.port}</h1>
-    <h1>Server Owner: ${ladaMapa.get(server.owner)}</h1>
-    <h1>Server Status: ${server.status}</h1>
+    <h6>Server Name: ${server.name}</h6>
+    <h6>Server Host: ${server.host}</h6>
+    <h6>Server Port: ${server.port}</h6>
+    <h6>Server Owner: ${ladaMapa.get(server.owner)}</h6>
+    <h6>Server Status: ${server.status}</h6>
 
-    <c:if test="${ladaMapa.get(server.owner).login.equals(loggedInUser) || isAdmin.equals(1)}">
-        <a href="/editServer?id=${server.id}">edit</a>
-    </c:if>
+    <%--<c:if test="${ladaMapa.get(server.owner).login.equals(loggedInUser) || isAdmin.equals('1')}">--%>
+        <%--<a href="/editServer?id=${server.id}">edit</a>--%>
+    <%--</c:if>--%>
+
+    <%
+
+        if(ladaMapa.get())
+
+
+    %>
 
 </c:forEach>
 
