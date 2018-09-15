@@ -3,6 +3,7 @@
 <%@ page import="pl.sda.java9.model.Server" %>
 <%@ page import="pl.sda.java9.model.User" %>
 <%@ page import="java.util.Map" %>
+<%@ page import="java.util.HashMap" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -12,7 +13,7 @@
 
 <%
     List<Server> allServers = (List<Server>) request.getAttribute("allServers");
-    Map<Integer, User> allUsers = (Map<Integer, User>) request.getAttribute("allUsers");
+    HashMap<Integer, User> allUsers = (HashMap<Integer, User>) request.getAttribute("allUsers");
 
     if (allServers == null || allServers.size() == 0) {
 %>
@@ -22,16 +23,16 @@
 
 %>
 
-<jsp:useBean id="ladeID" type="java.util.ArrayList"></jsp:useBean>
-<jsp:useBean id="ladaMapa" type="java.util.Map"></jsp:useBean>
-<jsp:useBean id="loggedInUser" type="java.lang.String"></jsp:useBean>
-<jsp:useBean id="isAdmin" type="java.lang.Integer"></jsp:useBean>
+<jsp:useBean id="ladeID" class="java.util.ArrayList"></jsp:useBean>
+<jsp:useBean id="ladaMapa" class="java.util.HashMap"></jsp:useBean>
+<jsp:useBean id="loggedInUser" class="java.lang.String"></jsp:useBean>
+<jsp:useBean id="isAdmin" class="java.lang.String"></jsp:useBean>
 
 <%
     ladeID.addAll(allServers);
     ladaMapa = allUsers;
     loggedInUser = (String) session.getAttribute("user");
-    isAdmin = (Integer) session.getAttribute("isAdmin");
+    isAdmin = (String) session.getAttribute("isAdmin");
 %>
 
 <c:forEach var="server" items="${ladeID}">

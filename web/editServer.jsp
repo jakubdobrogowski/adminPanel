@@ -14,8 +14,8 @@
 <%
     Server server = (Server) request.getAttribute("server");
     Map<Integer, User> allUsers = (Map<Integer, User>) request.getAttribute("allUsers");
-    Integer isAdmin = (Integer) session.getAttribute("isAdmin");
-    Integer id = (Integer) session.getAttribute("id");
+    String isAdmin = (String) session.getAttribute("isAdmin");
+    String id = (String) session.getAttribute("id");
 
     if (server == null) {
 %>
@@ -30,12 +30,15 @@
     }
 %>
 
-<jsp:useBean id="admin" type="java.lang.Integer"></jsp:useBean>
-<jsp:useBean id="idUser" type="java.lang.Integer"></jsp:useBean>
+<jsp:useBean id="admin" class="java.lang.String"></jsp:useBean>
+<jsp:useBean id="idUser" class="java.lang.String"></jsp:useBean>
+
 
 <%
     admin = isAdmin;
     idUser = id;
+
+    Boolean adminProp = admin.equals('1');    
 %>
 
 <form action="/editServer" method="post">
@@ -51,14 +54,31 @@
     <br>
 
 
-    <c:choose>
-        <c:when test="${admin.equals(1)}"></c:when>
-        Owner: <input type="text" name="owner" placeholder="owner">
-        <br>
-        <c:otherwise>
-            <input type="hidden" name="owner" value="${idUser}">
-        </c:otherwise>
-    </c:choose>
+    <%--<c:choose>--%>
+    <%--<c:when test="${adminProp}">--%>
+
+    <%--Owner: <input type="text" name="owner" placeholder="owner">--%>
+    <%--<br>--%>
+
+    <%--</c:when>--%>
+    <%--<c:otherwise>--%>
+    <%--<input type="hidden" name="owner" value="${idUser}">--%>
+    <%--</c:otherwise>--%>
+    <%--</c:choose>--%>
+
+    <%
+        if (adminProp) {
+    %>
+    Owner: <input type="text" name="owner" placeholder="owner">
+    <br>
+    <%
+    } else {
+    %>
+    <input type="hidden" name="owner" value="${idUser}">
+    <%
+        }
+    %>
+
     <input type="submit" value="submit">
 </form>
 </body>
