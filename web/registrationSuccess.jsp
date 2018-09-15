@@ -22,5 +22,7 @@
 </h2>
 
 <a href="/login.jsp">Zaloguj sie</a>
+<a href="/showServerList">Server List</a>
+
 </body>
 </html>

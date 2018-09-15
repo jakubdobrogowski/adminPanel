@@ -48,6 +48,8 @@ public class LoginServlet extends HttpServlet {
         }
 
         session.setAttribute("user", userByLogin.getLogin());
+//        session.setAttribute("id", userByLogin.getId());
+        session.setAttribute("isAdmin", userByLogin.getIsAdmin());
         session.setMaxInactiveInterval(15 * 60);
         response.sendRedirect("/serverList.jsp");
 

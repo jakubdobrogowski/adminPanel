@@ -7,6 +7,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class UserDAO {
@@ -40,15 +42,20 @@ public class UserDAO {
 
         while (rs.next()) {
 
-            user.setId(rs.getInt("id"));
-            user.setLogin(rs.getString("login"));
-            user.setName(rs.getString("name"));
-            user.setSurname(rs.getString("surname"));
-            user.setPassword(rs.getString("password"));
-            user.setIsAdmin(rs.getInt("isAdmin"));
+            buildUser(rs, user);
         }
 
         return user;
+    }
+
+    private static void buildUser(ResultSet rs, User user) throws SQLException {
+
+        user.setId(rs.getInt("id"));
+        user.setLogin(rs.getString("login"));
+        user.setName(rs.getString("name"));
+        user.setSurname(rs.getString("surname"));
+        user.setPassword(rs.getString("password"));
+        user.setIsAdmin(rs.getInt("isAdmin"));
     }
 
     public static boolean saveUser(User user) {
@@ -72,5 +79,38 @@ public class UserDAO {
             e.printStackTrace();
         }
         return execute;
+    }
+
+    public static List<User> getAllUsers() {
+
+        List<User> users = new ArrayList<>();
+        try (Connection connection = DatabaseConector.getConnection()) {
+
+            if (connection == null) {
+
+                System.out.println("connection to db user is null xdd mamamacka here again");
+            }
+
+            PreparedStatement ps = connection.prepareStatement("select * from user");
+            ResultSet rs = ps.executeQuery();
+            users = returnUserList(rs);
+
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return users;
+    }
+
+    private static List<User> returnUserList(ResultSet rs) throws SQLException {
+
+        List<User> users = new ArrayList<>();
+        while (rs.next()) {
+
+            User user = new User();
+            buildUser(rs, user);
+            users.add(user);
+        }
+        return users;
     }
 }
