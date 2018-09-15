@@ -38,7 +38,7 @@
     admin = isAdmin;
     idUser = id;
 
-    Boolean adminProp = admin.equals('1');    
+    Boolean adminProp = admin.equals("1");
 %>
 
 <form action="/editServer" method="post">
@@ -69,7 +69,20 @@
     <%
         if (adminProp) {
     %>
-    Owner: <input type="text" name="owner" placeholder="owner">
+    
+    Owner:
+    <select name="owner">
+        <%
+            for (Integer userID : allUsers.keySet()) {
+                User user = allUsers.get(userID);
+                String nameAndSurname = user.getName() + " " + user.getSurname();
+        %>
+        <option value="<%=userID%>"><%=nameAndSurname%></option>
+        <%
+            }
+        %>
+    </select>
+
     <br>
     <%
     } else {
