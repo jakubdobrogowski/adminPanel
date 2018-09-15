@@ -53,23 +53,10 @@
     Status: <input type="text" name="status" placeholder="status">
     <br>
 
-
-    <%--<c:choose>--%>
-    <%--<c:when test="${adminProp}">--%>
-
-    <%--Owner: <input type="text" name="owner" placeholder="owner">--%>
-    <%--<br>--%>
-
-    <%--</c:when>--%>
-    <%--<c:otherwise>--%>
-    <%--<input type="hidden" name="owner" value="${idUser}">--%>
-    <%--</c:otherwise>--%>
-    <%--</c:choose>--%>
-
     <%
         if (adminProp) {
     %>
-    
+
     Owner:
     <select name="owner">
         <%
