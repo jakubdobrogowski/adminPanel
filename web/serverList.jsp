@@ -46,13 +46,15 @@
         <a href="/editServer.jsp?id=${server.id}">edit</a>
     </c:if>
 
-    <a href="/editServer.jsp">create</a>
-
 </c:forEach>
 
 <%
     }
 %>
+
+<a href="/editServer">create</a>
+
+
 <form action="/logout" method="get">
     <input type="submit" value="Log Out">
 </form>
