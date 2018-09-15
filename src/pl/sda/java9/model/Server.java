@@ -10,6 +10,19 @@ public class Server {
     private Integer owner;
     private String status;
 
+    public Server(Integer id, String name, String host, Integer port, Integer owner, String status) {
+        this.id = id;
+        this.name = name;
+        this.host = host;
+        this.port = port;
+        this.owner = owner;
+        this.status = status;
+    }
+
+    public Server() {
+
+    }
+
     public Integer getId() {
         return id;
     }
