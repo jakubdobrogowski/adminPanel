@@ -22,9 +22,14 @@ public class PrepareServerEditServlet extends HttpServlet {
 
         String id = request.getParameter("id");
 
+
         if (!StringUtils.isNumeric(id)) {
 
-            response.sendRedirect("/editServer.jsp");
+            request.setAttribute("allUsers", CommonUtils.createUserMap(UserDAO.getAllUsers()));
+
+            RequestDispatcher requestDispatcher = request.getRequestDispatcher("/editServer.jsp");
+            requestDispatcher.forward(request, response);
+            return;
         }
 
         Server server = ServerDAO.getServerById(Integer.valueOf(id));

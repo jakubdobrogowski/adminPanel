@@ -43,7 +43,7 @@
     <h1>Server Status: ${server.status}</h1>
 
     <c:if test="${ladaMapa.get(server.owner).login.equals(loggedInUser) || isAdmin.equals(1)}">
-        <a href="/editServer.jsp?id=${server.id}">edit</a>
+        <a href="/editServer?id=${server.id}">edit</a>
     </c:if>
 
 </c:forEach>
