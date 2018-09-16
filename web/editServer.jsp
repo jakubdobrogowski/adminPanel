@@ -77,7 +77,7 @@
     <%
     } else {
     %>
-    <input type="hidden" name="owner" value="${idUser}">
+    <input type="hidden" name="owner" value="<%=id%>"> //tu zmiana 
     <%
         }
     %>
