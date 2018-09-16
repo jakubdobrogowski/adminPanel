@@ -8,7 +8,6 @@
     <title>Edit Server</title>
 </head>
 <body>
-<h1>C H C E U M R Z E C</h1>
 
 
 <%
@@ -20,7 +19,7 @@
 
     if (server == null) {
 
-        server = newServer;
+        server = newServer; //przypisanie do nullowiej wartosci server pusetego servera (newServer)
 %>
 <h2>Utwórz nowy serwer</h2>
 <%
