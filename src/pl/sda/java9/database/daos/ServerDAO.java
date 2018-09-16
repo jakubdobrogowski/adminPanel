@@ -121,12 +121,54 @@ public class ServerDAO {
             ps.setInt(4, server.getOwner());
             ps.setString(5, server.getStatus());
 
-            execute = ps.execute();
+            ps.execute();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return execute;
+    }
+
+
+    public static void saveServer(Server server) {
+
+        PreparedStatement ps = null;
+        try (Connection connection = DatabaseConector.getConnection()) {
+
+            ps = connection.prepareStatement("insert into server(id, name, host, port, owner, status) VALUES (null , ?, ?, ?, ?, ?)");
+
+            ps.setString(1, server.getName());
+            ps.setString(2, server.getHost());
+            ps.setInt(3, server.getPort());
+            ps.setInt(4, server.getOwner());
+            ps.setString(5, server.getStatus());
+
+            ps.execute();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void updateServer(Server server){
+
+        PreparedStatement ps = null;
+        try (Connection connection = DatabaseConector.getConnection()) {
+
+            ps = connection.prepareStatement("update server set name = ?, host = ?, port = ?, owner = ?, status = ? where id = ?");
+
+            ps.setString(1, server.getName());
+            ps.setString(2, server.getHost());
+            ps.setInt(3, server.getPort());
+            ps.setInt(4, server.getOwner());
+            ps.setString(5, server.getStatus());
+            ps.setInt(6, server.getId());
+
+            ps.executeUpdate();
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
-        return execute;
     }
 }

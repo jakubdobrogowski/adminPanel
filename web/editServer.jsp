@@ -16,8 +16,11 @@
     Map<Integer, User> allUsers = (Map<Integer, User>) request.getAttribute("allUsers");
     String isAdmin = (String) session.getAttribute("isAdmin");
     String id = (String) session.getAttribute("id");
+    Server newServer = (Server) request.getAttribute("newServer");
 
     if (server == null) {
+
+        server = newServer;
 %>
 <h2>Utwórz nowy serwer</h2>
 <%
@@ -43,7 +46,7 @@
 
 <form action="/saveServer" method="post">
 
-    <input type="hidden" name="id">
+    <input type="hidden" name="id" value="<%=server.getId()%>">
     Name: <input type="text" name="name" placeholder="name">
     <br>
     Host: <input type="text" name="host" placeholder="host">
@@ -64,7 +67,8 @@
                 User user = allUsers.get(userID);
                 String nameAndSurname = user.getName() + " " + user.getSurname();
         %>
-        <option value="<%=userID%>"><%=nameAndSurname%></option>
+        <option value="<%=userID%>"><%=nameAndSurname%>
+        </option>
         <%
             }
         %>

@@ -51,14 +51,10 @@
 <h6>Server Status:  <%=server.getStatus()%>
 </h6>
 
-<%--<c:if test="${ladaMapa.get(server.owner).login.equals(loggedInUser) || isAdmin.equals('1')}">--%>
-<%--<a href="/editServer?id=${server.id}">edit</a>--%>
-<%--</c:if>--%>
-
 <%
     if (allUsers.get(server.getOwner()).getLogin().equals(loggedInUser) || isAdmin.equals("1")) {
 %>
-<a href="/editServer?id=<%=server.getId()%>">edit</a
+<a href="/editServer?id=<%=server.getId()%>">edit</a>
 <%
         }
     }

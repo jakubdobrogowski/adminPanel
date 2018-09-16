@@ -38,7 +38,16 @@ public class SaveServerServlet extends HttpServlet {
 
         Server server = new Server(id1, name, host, Integer.valueOf(port), Integer.valueOf(owner), status);
 
-        ServerDAO.saveOrUpdateServer(server);
+        // ServerDAO.saveOrUpdateServer(server);
+
+        if (id1 == null) {
+
+            ServerDAO.saveServer(server);
+        } else {
+
+            ServerDAO.updateServer(server);
+        }
+
         request.setAttribute("allUsers", CommonUtils.createUserMap(UserDAO.getAllUsers()));
         request.setAttribute("allServers", ServerDAO.getAllServers());
         RequestDispatcher rs = request.getRequestDispatcher("/serverList.jsp");

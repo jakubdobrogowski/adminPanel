@@ -27,6 +27,8 @@ public class PrepareServerEditServlet extends HttpServlet {
 
             request.setAttribute("allUsers", CommonUtils.createUserMap(UserDAO.getAllUsers()));
 
+            request.setAttribute("newServer", new Server()); // zeby nullpointer nie jebnał
+
             RequestDispatcher requestDispatcher = request.getRequestDispatcher("/editServer.jsp");
             requestDispatcher.forward(request, response);
             return;
